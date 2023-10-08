@@ -1,0 +1,13 @@
+# cuboid-base:0.0.1
+# targeted for running pytorch on cuda
+FROM python:3.8-bullseye
+USER root
+EXPOSE 8080
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+RUN set -eux; \
+    apt -y update; apt -y install curl bash tzdata git; \
+    ARCH=`uname -m`; \
+    groupadd --gid 1000 cuboid; \
+    useradd --uid 1000 --gid cuboid --shell /bin/bash --create-home cuboid;
+USER cuboid
+

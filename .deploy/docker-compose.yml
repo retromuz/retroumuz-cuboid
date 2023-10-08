@@ -1,0 +1,14 @@
+version: "3.2"
+services:
+
+  cuboid-base:
+    image: retroumuz/cuboid-base:0.0.1
+    volumes:
+      - ../src:/home/xformer/src
+    working_dir: /home/cuboid
+
+  cuboid:
+    image: retroumuz/cuboid:0.0.1
+    volumes:
+      - ../src:/home/xformer/src
+    working_dir: /home/cuboid
