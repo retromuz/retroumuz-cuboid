@@ -21,7 +21,6 @@ shell-base:
 	docker-compose -f ${PATH_DEPLOY}/docker-compose.yml run --rm ${APP_NAME}-base /bin/bash
 .PHONY: shell-base
 
-
 shell:
 	@echo "make shell"
 	docker-compose -f ${PATH_DEPLOY}/docker-compose.yml run --rm ${APP_NAME} /bin/bash
@@ -29,11 +28,11 @@ shell:
 
 dockerBaseBuild: 
 	@echo "make dockerBaseBuild"
-	docker build -f Dockerfile.base . --no-cache -t ${IMAGE_NAME_BASE}
+	docker buildx build --platform linux/amd64 -f Dockerfile.base . --no-cache -t ${IMAGE_NAME_BASE}
 .PHONY: dockerBaseBuild
 
 dockerBuild:
 	@echo "make dockerBuild"
-	docker build -f Dockerfile . --no-cache -t ${IMAGE_NAME}
+	docker buildx build --platform linux/amd64 -f Dockerfile . --no-cache -t ${IMAGE_NAME}
 	# docker push ${IMAGE_NAME}
 .PHONY: dockerBuild
